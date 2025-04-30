@@ -29,22 +29,35 @@ SOURCE = ./ft_atoi.c \
 ./ft_memmove.c \
 ./ ft_strlcat.c \
 ./ ft_strnstr.c
-
 OBJ=$(SOURCE:.c=.o)
 
-all: $(SOURCE) $(EXE)
+#Archivo de encabezado
+INCLUDE = libft.h
 
-$(EXE): $(OBJ)
-        $(CC) $(OBJ) -o $@
+#Crear bibliotecas y eliminar archivos
+AR = ar rcs
+RM = rm -f
 
-%.o: %.c
-        $(CC) $(CFLAGS) $< -o $@
+#Reglas por defecto que lo compila todo
+all: $(NAME)
 
+#Regla para crear la biblioteca
+$(NAME): $(OBJ)
+	$(AR) $@ $^
+
+#Pasar archivos .c a .o
+%.o: %.c $(INCLUDE)
+        $(CC) $(CFLAGS) -c -o $@ $<
+
+#Regla para eliminar todos los archivos objeto creados
 clean:
-        rm -f $(OFILES)
+        $(RM) $(OBJ)
 
-fclean:  
-        clean rm -f $(NAME)
+#Regla para eliminar todos los archivos .o y .a
+fclean: clean
+        $(RM) $(NAME)
 
-re:
-        fclean $(NAME)
+re: fclean all
+
+#Indica que las siguientes reglas no son archivos reales
+.PHONY: all clean fclean re
