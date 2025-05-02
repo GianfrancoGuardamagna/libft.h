@@ -10,26 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include <stddef.h>
 
 char	*ft_strchr(const char *s, int c)
 {
-	int i = 0;
-	while(s[i] != c)
-	{
-		i++;
-	}
-	if(s[i] == c)
-	{
-		return &s[i];
-	}
-	return NULL;
-}
+	char ch;
 
-int	main()
-{
-	printf("%s\n",ft_strchr("Hola", 'l'));
-	printf("%s\n", strchr("Hola", 'l'));
-	return 0;
+	ch = (char) c;
+	while(*s != '\0')
+	{
+		if(*s == ch)
+			return (char *)s;
+		s++;
+	}
+	if(ch == '\0')
+		return ((char *)s);
+	return NULL;
 }

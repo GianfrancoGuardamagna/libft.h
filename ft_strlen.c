@@ -10,25 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include <stddef.h>
 
-size_t strlength(const char *s)
+size_t strlen(const char *s)
 {
 	int i = 0;
 	while(s[i])
-	{
 		i++;
-	}
-	return i;
-}
-
-int	main()
-{
-	char stringy[] = "Hola la vaca lola";
-	size_t hdLen = strlen(stringy);
-	size_t hvLen = strlength(stringy);
-	printf("%zu\n",hdLen);
-	printf("%zu\n",hvLen);
-	return 0;
+	return (i);
 }

@@ -10,37 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stddef.h>
 #include <stdlib.h>
 
-char *strdup(const char *s)
+char *ft_strdup(const char *s)
 {
-	if(s == NULL)
-		return NULL;
-
-	int i = 0;
-	while(s[i] != '\0')
-	{
-		i++;
-	}
-	char *dst = malloc(i + 1);
+	int	i;
+	char *dst;
 
 	i = 0;
-	while(s[i] != '\0')
+	while (s[i] != '\0')
+		i++;
+	dst = (char *)malloc(i + 1);
+	if(dst == NULL)
+		return NULL;
+	i = 0;
+	while (s[i] != '\0')
         {
 		dst[i] = s[i];
                 i++;
         }
-
-	return dst;
-}
-
-int	main()
-{
-	char charsy[] = "Hola mundo!";
-	char *charsyDos;
-
-	charsyDos = strdup(charsy);
-	printf("%s\n", charsyDos);
-	return 0;
+	dst[i] = '\0';
+	return (dst);
 }

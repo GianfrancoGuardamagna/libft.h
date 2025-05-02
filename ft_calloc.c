@@ -10,28 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stddef.h>
 #include <stdlib.h>
+#include <stdint.h>
 
-void	*calloc(size_t nmemb, size_t size)
+void *calloc(size_t nmemb, size_t size)
 {
-	if(!nmemb || !size)
-	{
-		return NULL;
-	}
-
-	while(nmemb > 0)
-	{
-		malloc(size);
-		nmemb--;
-	}
-}
-
-int	main()
-{
-	int i = 5;
-	int *array;
-	array = (int*)calloc(i, sizeof(int));
-	printf("%p\n", &array);
-	return 0;
+    void *ptr;
+    unsigned char *byte_ptr;
+    size_t total_size;
+    size_t i;
+    
+    if (size > 0 && nmemb > SIZE_MAX / size)
+        return NULL;
+    total_size = nmemb * size;
+    ptr = malloc(total_size);
+    if (ptr == NULL)
+        return NULL;
+    byte_ptr = (unsigned char *)ptr;
+    i = 0;
+    while (i < total_size)
+    {
+        byte_ptr[i] = 0;
+        i++;
+    }
+    return (ptr);
 }

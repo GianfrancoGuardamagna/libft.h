@@ -10,29 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 int	isprint(int c)
 {
 	if(c >= 32 && c <= 126)
-	{
-		return c;
-	}
+		return (c);
 	else
-	{
-		return 0;
-	}
-}
-
-int	main()
-{
-	int count = 0;
-	char str[13] = "Hola \n mundo";
-    	int length = strlen(str);
-    	while(count <= length)
-	{
-		printf("%c",isprint(str[count]));
-		count++;
-	}
-	return 0;
+		return (0);
 }

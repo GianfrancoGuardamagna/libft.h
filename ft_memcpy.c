@@ -1,22 +1,19 @@
-#include <stdio.h>
+#include <stddef.h>
 
-void *memcpy(void *dest, const void *src, size_t n)
+void *ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char *s = dest;
-	while(n > 0 && src)
+	unsigned char *d;
+	const unsigned char *s;
+	size_t i;
+	if (!dest && !src)
+		return NULL;
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	i = 0;
+	while (i < n)
 	{
-		s = src;
-		s++;
-		src++;
-		n--;
+		d[i] = s[i];
+		i++;
 	}
-}
-
-int	main()
-{
-	char charsyDest[] = "Hola";
-	char charsySrc[] = "Chau";
-	memcpy(charsyDest, charsySrc, 4);
-	printf("%s", charsyDest);
-	return 0;
+	return (dest);
 }

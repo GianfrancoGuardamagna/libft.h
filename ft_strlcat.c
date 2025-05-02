@@ -1,39 +1,33 @@
-#include <stdio.h>
+#include <stddef.h>
 
-size_t strlcat(char *dst, const char *src, size_t dsize)
+size_t	strlen(const char *src)
 {
-    size_t i = 0;
-    size_t j = 0;
-    size_t k = 0;
-
-	if(!dst || !src || !dsize)
-		return NULL;
-
-    while(dst[j] != '\0')
-    {
-        j++;
-    }
-    k = j;
-    while(j < dsize - 1 && src[i] !='\0')
-    {
-        dst[j] = src[i];
-        i++;
-        j++;
-    }
-    dst[dsize] = '\0';
-
-    while(src[i] != '\0')
-    {
-        i++;
-    }
-    return i + k;
+	size_t i = 0;
+	while(src[i] != '\0')
+		i++;
+	return i;
 }
 
-int    main()
+size_t ft_strlcat(char *dst, const char *src, size_t dsize)
 {
-    char charsy[9] = "Hello";
-    char charsyDos[] = " Wolrd";
-    printf("%ld\n", strlcat(charsy, charsyDos, 9));
-    printf("%s\n", charsy);
-    return 0;
+	size_t dst_len;
+	size_t src_len;
+	size_t i;
+
+	dst_len = 0;
+	src_len = strlen(src);
+	i = 0;
+	if (dsize == 0)
+		return src_len;
+	while (dst_len < dsize && dst[dst_len] != '\0')
+		dst_len++;
+	if (dst_len == dsize)
+		return dst_len + src_len;
+	while (dst_len + i < dsize - 1 && src[i] != '\0')
+	{
+		dst[dst_len + i] = src[i];
+		i++;
+	}
+	dst[dst_len + i] = '\0';
+	return dst_len + src_len;
 }

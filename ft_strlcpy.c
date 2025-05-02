@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stddef.h>
 
 size_t my_strlen(const char* str)
 {
@@ -24,12 +24,4 @@ size_t strlcpy(char *dst, const char *src, size_t size)
 
     dst[i] = '\0';
     return src_len;
-}
-
-int main()
-{
-    char dst[30] = "Hello, World!";
-    char src[] = "Welcome to C programming!";
-    size_t len = strlcpy(dst, src, 20);
-    return 0;
 }

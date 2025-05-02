@@ -10,16 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+
 void	*memset(void *s, int c, size_t n)
 {
-	int	i;
 	unsigned char	*p;
+	unsigned char byte;
 
-	i = 0;
-	*p = s;
+	p = (unsigned char *) s;
+	byte = (unsigned char) c;
 	while (n > 0)
 	{
-		*p = c;
+		*p = byte;
 		n--;
 		p++;
 	}

@@ -9,39 +9,22 @@
 /*   Updated: 2025/04/22 12:40:20 by gguardam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
-#include <string.h>
+#include <stddef.h>
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int i = 0;
-	char* last_c;
-	while(s[i])
-	{
-		if(s[i] != c)
-		{
-			i++;
-		}
-		else if(s[i] == c)
-		{
-			last_c = &s[i];
-			i++;
-		}
-	}
-	if(last_c)
-	{
-		return last_c;
-	}
-	else
-	{
-		return NULL;
-	}
-}
+	const char* last_c;
+	char ch;
 
-int	main()
-{
-	printf("%s\n",ft_strrchr("Entre rios y Santa Fe", 'S'));
-	printf("%s\n", strrchr("Entre rios y Santa Fe", 'S'));
-	return 0;
+	last_c = NULL;
+	ch = (char)c;
+	while(*s != '\0')
+	{
+		if(*s == ch)
+			last_c = s;
+		s++;
+	}
+	if(ch == '\0')
+		return (char *)s;
+	return ((char *)last_c);
 }
