@@ -10,24 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include <stdio.h>
-
-int	tolower(int c)
+int	ft_tolower(int c)
 {
 	if(c >= 65 && c <= 90)
-	{
-		return c + 32;
-	}
+		return (c + 32);
 	else
-	{
-		return c;
-	}
+		return (c);
 }
-
-int	main()
-{
-	printf("%c\n", tolower(8));
-	return 0;
-}
-

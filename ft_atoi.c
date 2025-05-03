@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	white_spaces(char charsy)
+static int	white_spaces(char charsy)
 {
 	if (charsy == ' ' || charsy == '\t' || charsy == '\n')
 		return (1);
@@ -20,7 +20,7 @@ int	white_spaces(char charsy)
 		return (0);
 }
 
-int	sign_control(char charsy)
+static int	sign_control(char charsy)
 {
 	if (charsy == '-')
 		return (-1);

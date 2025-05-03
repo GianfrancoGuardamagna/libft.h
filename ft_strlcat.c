@@ -1,6 +1,6 @@
 #include <stddef.h>
 
-size_t	strlen(const char *src)
+static size_t	strlen(const char *src)
 {
 	size_t i = 0;
 	while(src[i] != '\0')
@@ -29,5 +29,5 @@ size_t ft_strlcat(char *dst, const char *src, size_t dsize)
 		i++;
 	}
 	dst[dst_len + i] = '\0';
-	return dst_len + src_len;
+	return (dst_len + src_len);
 }
