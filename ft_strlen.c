@@ -6,16 +6,18 @@
 /*   By: gguardam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 12:41:06 by gguardam          #+#    #+#             */
-/*   Updated: 2025/04/22 12:48:57 by gguardam         ###   ########.fr       */
+/*   Updated: 2025/05/03 17:13:27 by gguardam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
-size_t strlen(const char *s)
+size_t	strlen(const char *s)
 {
-	int i = 0;
-	while(s[i])
+	int	i;
+
+	i = 0;
+	while (s[i])
 		i++;
 	return (i);
 }

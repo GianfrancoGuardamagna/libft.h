@@ -6,9 +6,11 @@
 /*   By: gguardam <gguardam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:21:05 by gguardam          #+#    #+#             */
-/*   Updated: 2025/04/30 18:24:36 by gguardam         ###   ########.fr       */
+/*   Updated: 2025/05/03 16:42:34 by gguardam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 static int	white_spaces(char charsy)
 {
@@ -39,11 +41,8 @@ int	ft_atoi(const char *str)
 	i = 0;
 	while (white_spaces(str[i]))
 		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		sign = sign_control(str[i]);
-		i++;
-	}
+	sign = sign_control(str[i]);
+	i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		if (res > (2147483647 - (str[i] - '0')) / 10)
@@ -51,7 +50,7 @@ int	ft_atoi(const char *str)
 			if (sign == 1)
 				return (2147483647);
 			else
-				return (-2147483648); 
+				return (-2147483648);
 		}
 		res = res * 10 + (str[i] - '0');
 		i++;

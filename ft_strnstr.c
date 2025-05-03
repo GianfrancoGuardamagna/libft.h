@@ -1,23 +1,36 @@
-#include <stddef.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gguardam <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/03 16:25:08 by gguardam          #+#    #+#             */
+/*   Updated: 2025/05/03 19:22:51 by gguardam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static size_t strlen(const char *str)
+#include "libft.h"
+
+static size_t	strlen(const char *str)
 {
-	size_t i = 0;
+	size_t	i;
 
 	i = 0;
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 		i++;
-	return i;
+	return (i);
 }
 
-static int stringCheck(const char *big, const char *little, size_t pos, size_t len)
+static int	string_check(const char *big, const char\
+		*little, size_t pos, size_t len)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
-	while(little[i] != '\0')
+	while (little[i] != '\0')
 	{
-		if(pos >= len || big[pos] == '\0' || big[pos] != little[i])
+		if (pos >= len || big[pos] == '\0' || big[pos] != little[i])
 			return (0);
 		i++;
 		pos++;
@@ -25,21 +38,21 @@ static int stringCheck(const char *big, const char *little, size_t pos, size_t l
 	return (1);
 }
 
-char* ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
-	if(!little || little[0] == '\0')
-		return ((char*)big);
-	if(!big || strlen(little) > len)
+	if (!little || little[0] == '\0')
+		return ((char *) big);
+	if (!big || strlen(little) > len)
 		return (NULL);
-	while(i < len && big[i] != '\0')
+	while (i < len && big[i] != '\0')
 	{
-		if(big[i] == little[0])
+		if (big[i] == little[0])
 		{
-			if(stringCheck(big, little, i, len))
-				return ((char*)&big[i]);
+			if (string_check(big, little, i, len))
+				return ((char *) &big[i]);
 		}
 		i++;
 	}

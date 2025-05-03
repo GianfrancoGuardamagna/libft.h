@@ -1,28 +1,44 @@
-#ifndef MYLIB_H
-# define MYLIB_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gguardam <gguardam@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/03 16:26:18 by gguardam          #+#    #+#             */
+/*   Updated: 2025/05/03 19:30:26 by gguardam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	ft_atoi(const char *str);
-void	bzero(void *s, size_t n);
-void	*calloc(size_t nmemb, size_t size);
-int	ft_isalnum(int c);
-int	ft_isalpha(int c);
-int	ft_isdigit(int c)
-int	isprint(int c);
-void	*memchar(void *s, int c, size_t n);
-void	*memchr(void *s, int c, size_t n);
-int	memcmpi(const void *s1, const void *s2, size_t n);
-void	*memcpy(void *dest, const void *src, size_t n);
-void	*memmove(void *dest, const void *src, size_t n);
-void	*memset(void *s, int c, size_t n);
+#ifndef LIBFT_H
+# define LIBFT_H
+
+# include <stddef.h>
+# include <stdlib.h>
+# include <stdint.h>
+
+int		ft_atoi(const char *str);
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t nmemb, size_t size);
+int		ft_isalnum(int c);
+int		ft_isalpha(int c);
+int		ft_isdigit(int c);
+int		ft_isprint(int c);
+void	*ft_memchar(void *s, int c, size_t n);
+void	*ft_memchr(const void *s, int c, size_t n);
+int		ft_memcmpi(const void *s1, const void *s2, size_t n);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+void	*ft_memmove(void *dest, const void *src, size_t n);
+void	*ft_memset(void *s, int c, size_t n);
 char	*ft_strchr(const char *s, int c);
-char	*strdup(const char *s);
-size_t	strlcat(char *dst, const char *src, size_t dsize);
-size_t	strlcpy(char *dst, const char *src, size_t size);
-size_t	strlength(const char *s);
-int	strncmp(const char *s1, const char *s2, size_t n);
-char	 strnstr(const char *big, const char *little, size_t len);
+char	*ft_strdup(const char *s);
+size_t	ft_strlcat(char *dst, const char *src, size_t dsize);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+size_t	ft_strlength(const char *s);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strrchr(const char *s, int c);
-int	tolower(int c);
-int	toupper(int c);
+int		ft_tolower(int c);
+int		ft_toupper(int c);
 
 #endif
