@@ -14,9 +14,9 @@
 
 static int	white_spaces(char charsy)
 {
-	if (charsy == ' ' || charsy == '\t' || charsy == '\n')
-		return (1);
-	else if (charsy == '\v' || charsy == '\f' || charsy == '\r')
+	if (charsy == ' ' || charsy == '\t' || charsy == '\n' || \
+			charsy == '\v' || charsy == '\f' || charsy == '\r' || \
+		       	charsy == '\b')
 		return (1);
 	else
 		return (0);
@@ -26,8 +26,10 @@ static int	sign_control(char charsy)
 {
 	if (charsy == '-')
 		return (-1);
-	else
+	else if (charsy == '+')
 		return (1);
+	else
+		return (0);
 }
 
 int	ft_atoi(const char *str)
@@ -41,17 +43,17 @@ int	ft_atoi(const char *str)
 	i = 0;
 	while (white_spaces(str[i]))
 		i++;
-	sign = sign_control(str[i]);
-	i++;
+	if(sign_control(str[i]) == -1 || sign_control(str[i]) == 1)
+	{
+		sign = sign_control(str[i]);
+		i++;
+	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (res > (2147483647 - (str[i] - '0')) / 10)
-		{
-			if (sign == 1)
-				return (2147483647);
-			else
-				return (-2147483648);
-		}
+		if (res > (2147483647 - (str[i] - '0')) / 10 && sign == 1)
+			return (2147483647);
+		else if(res > (2147483647 - (str[i] - '0')) / 10 && sign == -1)
+			return (-2147483648);
 		res = res * 10 + (str[i] - '0');
 		i++;
 	}
