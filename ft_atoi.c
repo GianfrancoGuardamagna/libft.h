@@ -6,7 +6,7 @@
 /*   By: gguardam <gguardam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:21:05 by gguardam          #+#    #+#             */
-/*   Updated: 2025/05/06 12:21:30 by gguardam         ###   ########.fr       */
+/*   Updated: 2025/05/06 14:28:11 by gguardam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	white_spaces(char charsy)
 {
 	if (charsy == ' ' || charsy == '\t' || charsy == '\n' || charsy == '\v')
 		return (1);
-	else if (charsy == '\f' || charsy == '\r' || charsy == '\b')
+	else if (charsy == '\f' || charsy == '\r')
 		return (1);
 	else
 		return (0);

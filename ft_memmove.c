@@ -6,7 +6,7 @@
 /*   By: gguardam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 16:23:39 by gguardam          #+#    #+#             */
-/*   Updated: 2025/05/03 18:44:02 by gguardam         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:46:49 by gguardam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	original_dest = dest;
 	d = (char *)dest;
 	s = (const char *)src;
+	if (!dest && !src)
+		return (NULL);
 	if (d < s)
 	{
 		while (n--)
