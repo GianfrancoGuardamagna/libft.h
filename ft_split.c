@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gguardam <gguardam@student.42malaga.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/12 14:36:24 by gguardam          #+#    #+#             */
+/*   Updated: 2025/05/12 17:06:20 by gguardam         ###   ########.fr       */
+/*                                res[i] = mal                                */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int	ft_count_words(const char *s, char c)
@@ -6,33 +18,46 @@ static int	ft_count_words(const char *s, char c)
 	int	words;
 
 	i = 0;
-	words = 1;
+	words = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] == c)
+		while (s[i] == c)
+			i++;
+		if (s[i] != '\0')
+		{
 			words++;
-		i++;
+			while (s[i] != '\0' && s[i] != c)
+				i++;
+		}
 	}
 	return (words);
 }
 
 static void	free_result(char **result, int i)
 {
-	while (i > 0)
-		free(result[--i]);
+	int	j;
+
+	j = 0;
+	while (j < i)
+	{
+		free(result[j]);
+		j++;
+	}
 	free(result);
 }
 
 static char	*allocating(char **res, const char *start, const char *end, int i)
 {
-	res[i] = malloc(end - start + 1);
+	int	len;
+
+	len = end - start;
+	res[i] = (char *) malloc((len + 1) * sizeof(char));
 	if (!res[i])
 	{
 		free_result(res, i);
 		return (NULL);
 	}
-	ft_strlcpy(res[i], start, start - end);
-	res[i][end - start] = '\0';
+	ft_strlcpy(res[i], start, len + 1);
 	return (res[i]);
 }
 
@@ -68,7 +93,7 @@ char	**ft_split(const char *s, char c)
 	if (!s)
 		return (NULL);
 	words = ft_count_words(s, c);
-	result = malloc((words + 1) * sizeof(char *));
+	result = (char **) malloc((words + 1) * sizeof(char *));
 	if (!result)
 		return (NULL);
 	return (process_string(s, c, result));

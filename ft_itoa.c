@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gguardam <gguardam@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/12 14:36:49 by gguardam          #+#    #+#             */
+/*   Updated: 2025/05/12 15:38:03 by gguardam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static	int	first_process(long	*num)
@@ -21,16 +33,21 @@ static	void	fill_buffer(char *buffer, long n, int *i)
 	}
 }
 
-static char	*invert_buffer(char *buffer, int len)
+static char	*invert_buffer(char *buffer, int len, int sign)
 {
 	char	*result;
 	int		i;
 	int		j;
 
-	result = malloc(len + 1);
+	if (sign == -1)
+		result = malloc(len + 2);
+	else
+		result = malloc(len + 1);
 	if (!result)
 		return (NULL);
 	i = 0;
+	if (sign == -1)
+		result[i++] = '-';
 	j = len - 1;
 	while (j >= 0 && buffer[j] != '-')
 		result[i++] = buffer[j--];
@@ -53,8 +70,5 @@ char	*ft_itoa(int num)
 		return (ft_strdup("-2147483648"));
 	sign = first_process(&n);
 	fill_buffer(buffer, n, &i);
-	if (sign == -1)
-		buffer[i++] = '-';
-	buffer[i] = '\0';
-	return (invert_buffer(buffer, i));
+	return (invert_buffer(buffer, i, sign));
 }
