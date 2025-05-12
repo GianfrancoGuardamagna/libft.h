@@ -21,7 +21,7 @@ static	void	fill_buffer(char *buffer, long n, int *i)
 	}
 }
 
-static char	*invert_buffer(char *buffer, int len, int sign)
+static char	*invert_buffer(char *buffer, int len)
 {
 	char	*result;
 	int		i;
@@ -32,8 +32,6 @@ static char	*invert_buffer(char *buffer, int len, int sign)
 		return (NULL);
 	i = 0;
 	j = len - 1;
-	if (sign == -1)
-		result[i++] = '-';
 	while (j >= 0 && buffer[j] != '-')
 		result[i++] = buffer[j--];
 	result[i] = '\0';
@@ -58,5 +56,5 @@ char	*ft_itoa(int num)
 	if (sign == -1)
 		buffer[i++] = '-';
 	buffer[i] = '\0';
-	return (invert_buffer(buffer, i, sign));
+	return (invert_buffer(buffer, i));
 }
