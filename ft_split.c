@@ -1,36 +1,46 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "libft.h"
 
-static int ft_count_words(const char *s, char c)
+static int	ft_count_words(const char *s, char c)
 {
 	int	i;
 	int	words;
 
 	i = 0;
 	words = 1;
-	while(s[i] != '\0')
+	while (s[i] != '\0')
 	{
-		if(s[i] == c)
+		if (s[i] == c)
 			words++;
 		i++;
 	}
-	return words;
+	return (words);
 }
 
-char **ft_split(const char *s, char c)
+static void	free_result(char **result, int i)
 {
-	if (!s)
-		return NULL;
-	int	words;
-	char	**result;
-	int	i;
+	while (i > 0)
+		free(result[--i]);
+	free(result);
+}
+
+static char	*allocating(char **res, const char *start, const char *end, int i)
+{
+	res[i] = malloc(end - start + 1);
+	if (!res[i])
+	{
+		free_result(res, i);
+		return (NULL);
+	}
+	ft_strlcpy(res[i], start, start - end);
+	res[i][end - start] = '\0';
+	return (res[i]);
+}
+
+static char	**process_string(const char *s, char c, char **result)
+{
+	int			i;
 	const char	*start;
 
-	words = ft_count_words(s, c);
-	result = malloc((words + 1) * sizeof(char *));
-	if (!result)
-		return NULL;
 	i = 0;
 	while (*s)
 	{
@@ -39,36 +49,27 @@ char **ft_split(const char *s, char c)
 		start = s;
 		while (*s && *s != c)
 			s++;
-		//S queda posicionado en el delimitador y start al comienzo de la palabra, de esta manera sabemos que no estamos contando delimitadores consecutivos.
 		if (s > start)
 		{
-			result[i] = malloc(s - start + 1);
-			if (!result[i])
-			{
-				while (i > 0)
-					free(result[--i]);
-				free(result);
-				return NULL;
-			}
-			strncpy(result[i], start, s - start);
-			result[i][s - start] = '\0';
+			if (!allocating(result, start, s, i))
+				return (NULL);
 			i++;
 		}
 	}
 	result[i] = NULL;
-	return result;
+	return (result);
 }
 
-int main() {
-    char *str = "Hola Mundo Como Estas";
-    char **split = ft_split(str, ' ');
-    
-    if (split) {
-        for (int i = 0; split[i]; i++) {
-            printf("split[%d] = \"%s\"\n", i, split[i]);
-            free(split[i]);
-        }
-        free(split);
-    }
-    return 0;
+char	**ft_split(const char *s, char c)
+{
+	int			words;
+	char		**result;
+
+	if (!s)
+		return (NULL);
+	words = ft_count_words(s, c);
+	result = malloc((words + 1) * sizeof(char *));
+	if (!result)
+		return (NULL);
+	return (process_string(s, c, result));
 }

@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include "libft.h"
 
 static int	is_in_set(char c, const char *set)
 {
@@ -15,15 +13,16 @@ static int	is_in_set(char c, const char *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int	len;
-	int	start;
-	int	end;
-	char		*trimmed;
-	int	i;
+	int		len;
+	int		start;
+	int		end;
+	char	*trimmed;
+	int		i;
+
 	if (!s1 || !set)
-		return NULL;
+		return (NULL);
 	start = 0;
-	end = strlen(s1) - 1;
+	end = ft_strlen(s1) - 1;
 	i = 0;
 	while (s1[start] && is_in_set(s1[start], set))
 		start++;
@@ -32,19 +31,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 	len = end - start + 1;
 	trimmed = malloc(len + 1);
 	if (!trimmed)
-		return NULL;
+		return (NULL);
 	while (start <= end)
 		trimmed[i++] = s1[start++];
 	trimmed[i] = '\0';
 	return (trimmed);
-}
-
-int	main()
-{
-	char *charsy = "oooHolo Borgoooo";
-	char *charlston = "o";
-	char *result = ft_strtrim(charsy, charlston);
-	printf("%s\n", result);
-	free(result);
-	return 0;
 }

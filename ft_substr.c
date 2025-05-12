@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-char	*ft_substr (const char *s, unsigned int start, size_t len)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*dest;
@@ -27,13 +26,4 @@ char	*ft_substr (const char *s, unsigned int start, size_t len)
 	}
 	dest[len] = '\0';
 	return (dest);
-}
-
-int	main()
-{
-	char charsy[] = "Hola mundo!";
-	char *charsyDos = ft_substr(charsy, 5, 5);
-	printf("%s", charsyDos);
-	free(charsyDos);
-	return 0;
 }
