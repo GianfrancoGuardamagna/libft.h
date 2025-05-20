@@ -10,14 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
-# Nombre del archivo de la biblioteca
 NAME = libft.a
 
-# Compilador y flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-# Archivos fuente
 SOURCE = ft_atoi.c \
          ft_isalpha.c \
          ft_memchr.c \
@@ -53,37 +50,42 @@ SOURCE = ft_atoi.c \
          ft_strlcat.c \
          ft_strnstr.c
 
-# Convertir .c a .o
+BONUS_SOURCE = ft_lstnew_bonus.c \
+               ft_lstadd_front_bonus.c \
+               ft_lstsize_bonus.c \
+               ft_lstlast_bonus.c \
+               ft_lstadd_back_bonus.c \
+               ft_lstdelone_bonus.c \
+               ft_lstclear_bonus.c \
+               ft_lstiter_bonus.c \
+               ft_lstmap_bonus.c
+
 OBJ = $(SOURCE:.c=.o)
 
-# Archivo de encabezado
+BONUS_OBJ = $(BONUS_SOURCE:.c=.o)
+
 INCLUDE = libft.h
 
-# Crear bibliotecas y eliminar archivos
 AR = ar rcs
 RM = rm -f
 
-# Regla por defecto que lo compila todo
 all: $(NAME)
 
-# Regla para crear la biblioteca
 $(NAME): $(OBJ)
 	$(AR) $@ $^
 
-# Pasar archivos .c a .o
 %.o: %.c $(INCLUDE)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-# Regla para eliminar todos los archivos objeto creados
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(BONUS_OBJ)
 
-# Regla para eliminar todos los archivos .o y .a
 fclean: clean
 	$(RM) $(NAME)
 
-# Reconstruir todo
 re: fclean all
 
-# Especificar las reglas phony
-.PHONY: all clean fclean re
+bonus: $(OBJ) $(BONUS_OBJ)
+	$(AR) $(NAME) $(OBJ) $(BONUS_OBJ)
+
+.PHONY: all clean fclean re bonus
