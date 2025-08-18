@@ -48,6 +48,7 @@ SOURCE = ft_atoi.c \
          ft_isalnum.c \
          ft_memmove.c \
          ft_strlcat.c \
+         ft_atof.c \
          ft_strnstr.c
 
 BONUS_SOURCE = ft_lstnew_bonus.c \
