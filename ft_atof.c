@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atof.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gguardam <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/22 12:41:06 by gguardam          #+#    #+#             */
+/*   Updated: 2025/08/24 17:13:27 by gguardam         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int	white_spaces(char charsy)
@@ -20,38 +32,42 @@ static int	sign_control(char charsy)
 		return (0);
 }
 
-float ft_atof(const char *str)
+float	rescursive_translator(char *str, float *res, int *i)
 {
-	float	res;
 	float	decimal;
-	int	sign;
-	int	i;
-	int	dot;
+	int		dot;
 
-	res = 0;
 	decimal = 0.1;
-	sign = 1;
-	i = 0;
 	dot = 0;
-	while (white_spaces(str[i]))
-		i++;
-	if (sign_control(str[i]) == -1 || sign_control(str[i]) == 1)
-	{
-		sign = sign_control(str[i]);
-		i++;
-	}
 	while ((str[i] && ft_isdigit(str[i])) || (str[i] == '.' && dot == 0))
 	{
-		if(str[i] == '.')
+		if (str[i] == '.')
 			dot = 1;
-		else if(dot == 0)
+		else if (dot == 0)
 			res = res * 10 + (str[i] - '0');
-		else if(dot != 0)
+		else if (dot != 0)
 		{
 			res += (str[i] - '0') * decimal;
 			decimal /= 10;
 		}
 		i++;
 	}
+	return (res);
+}
+
+float	ft_atof(const char *str)
+{
+	float	res;
+	int		sign;
+	int		i;
+
+	res = 0;
+	sign = 1;
+	i = 0;
+	while (white_spaces(str[i]))
+		i++;
+	if (sign_control(str[i]) == -1 || sign_control(str[i]) == 1)
+		sign = sign_control(str[i++]);
+	res = rescursive_translator(str, dot, res, decimal, i);
 	return (res * sign);
 }
