@@ -26,6 +26,7 @@ SOURCE = ft_atoi.c \
          ft_memcmp.c \
          ft_strchr.c \
          ft_strlen.c \
+         ft_isspace.c \
          ft_tolower.c \
          ft_calloc.c \
          ft_isprint.c \
@@ -48,14 +49,10 @@ SOURCE = ft_atoi.c \
          ft_isalnum.c \
          ft_memmove.c \
          ft_strlcat.c \
-         ft_atof.c \
          ft_strnstr.c
 
-BONUS_SOURCE = ft_lstnew_bonus.c \
-               ft_lstadd_front_bonus.c \
-               ft_lstsize_bonus.c \
+BONUS_SOURCE = ft_lstsize_bonus.c \
                ft_lstlast_bonus.c \
-               ft_lstadd_back_bonus.c \
                ft_lstdelone_bonus.c \
                ft_lstclear_bonus.c \
                ft_lstiter_bonus.c \
