@@ -16,6 +16,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SOURCE = ft_atoi.c \
+	 ft_atol.c \
          ft_isalpha.c \
          ft_memchr.c \
          ft_memset.c \
